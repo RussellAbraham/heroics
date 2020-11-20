@@ -20,15 +20,19 @@
 		},
 		paths: {
 			cdn: 'https://assets.codepen.io/1674766',
+			s3: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/1674766',
+
 			jquery: 'https://assets.codepen.io/1674766/jquery.min',
 			underscore: 'https://assets.codepen.io/1674766/underscore.min',
 			backbone: 'https://assets.codepen.io/1674766/backbone.min',
+
 			bootstrap: 'https://assets.codepen.io/1674766/util.min',
-			s3: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/1674766',
+			modal: 'https://assets.codepen.io/1674766/modal.min'
+
 		}
 	});
 
-	requirejs([ 'backbone', 'bootstrap', 'cdn/modal.min', 'cdn/modal.extension' ], function (Backbone, bootstrap, modal, extension) {
+	requirejs(['backbone', 'bootstrap'], function (Backbone, bootstrap) {
 		if (typeof global !== 'undefined') {
 			global.plugins = plugins;
 		}
