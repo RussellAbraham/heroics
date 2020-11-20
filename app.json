@@ -1,0 +1,8 @@
+{
+  "name": "Heroics",
+  "description": "Node.js app using Express 4",
+  "repository": "https://github.com/RussellAbraham/heroics",
+  "logo": "https://assets.codepen.io/1674766/mask-icon.svg",
+  "keywords": ["node", "express", "heroku"],
+  "image": "heroku/nodejs"
+}
