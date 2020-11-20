@@ -9,32 +9,25 @@
 		}
 	});
 	requirejs([ 'jquery', 'bootstrap' ], function($, bootstrap){
-		function ProtocolHandler(title, url, name){
-			this.title = title;
+		function ProtocolHandler(scheme, url, title){
+			this.scheme = scheme;
 			this.url = url;
-			this.name = name;			
+			this.title = title;
 		}
 		ProtocolHandler.prototype = {
 			register : function(){
-				navigator.registerProtocolHandler(
-					this.title,
-					this.url,
-					this.name
-				);
+				navigator.registerProtocolHandler( this.scheme, this.url, this.title );
 			},
 			unregister : function(){
-				navigator.unregisterProtocolHandler(
-					this.title,
-					this.name
-				);
+				navigator.unregisterProtocolHandler( this.scheme, this.title );
 			},
 			check : function(){
 				if('isProtocolHandlerRegistered' in navigator){
-					alert(navigator.isProtocolHandlerRegistered( this.title, this.url ));
+					alert(navigator.isProtocolHandlerRegistered( this.scheme, this.url ));
 				}
 			}
 		};
-		// plugins.protocolHandler = new ProtocolHandler('','','');
+		plugins.protocolHandler = new ProtocolHandler('web+echo','https://heroics.herokuapp.com/?echo=%s','Heroku Handler');
 		if(typeof global !== 'undefined'){
 			global.plugins = plugins;
 		}
