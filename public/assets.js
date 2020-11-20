@@ -9,6 +9,32 @@
 		}
 	});
 	requirejs([ 'jquery', 'bootstrap' ], function($, bootstrap){
+		function ProtocolHandler(title, url, name){
+			this.title = title;
+			this.url = url;
+			this.name = name;			
+		}
+		ProtocolHandler.prototype = {
+			register : function(){
+				navigator.registerProtocolHandler(
+					this.title,
+					this.url,
+					this.name
+				);
+			},
+			unregister : function(){
+				navigator.unregisterProtocolHandler(
+					this.title,
+					this.name
+				);
+			},
+			check : function(){
+				if('isProtocolHandlerRegistered' in navigator){
+					alert(navigator.isProtocolHandlerRegistered( this.title, this.url ));
+				}
+			}
+		};
+		// plugins.protocolHandler = new ProtocolHandler('','','');
 		if(typeof global !== 'undefined'){
 			global.plugins = plugins;
 		}
