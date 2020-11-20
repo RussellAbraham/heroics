@@ -27,7 +27,8 @@
 			backbone: 'https://assets.codepen.io/1674766/backbone.min',
 
 			bootstrap: 'https://assets.codepen.io/1674766/util.min',
-			modal: 'https://assets.codepen.io/1674766/modal.min'
+			modal: 'https://assets.codepen.io/1674766/modal.min',
+			backboneModal : 'https://assets.codepen.io/1674766/modal.extension'
 
 		}
 	});
