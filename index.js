@@ -1,54 +1,35 @@
+const port = process.env.PORT || 5000;
 const express = require('express');
 const path = require('path');
 
+const Backbone = require('backbone');
+
 const cool = require('cool-ascii-faces');
 
-const {
-  Pool
-} = require('pg');
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
+const test = new Backbone.Model({
+    title : 'test'
 });
 
-const PORT = process.env.PORT || 5000;
+const app = express();
 
-express()
-  .use(express.static(path.join(__dirname, 'public')))
-  .set('views', path.join(__dirname, 'views'))
-  .set('view engine', 'ejs')
-  .get('/', (req, res) => res.render('home'))
-  .get('/about', function (req, res) {
-    res.render('about')
-  })
-  .get('/contact', function (req, res) {
-    res.render('contact')
-  })
-  .get('/cool', (req, res) => res.send(cool()))
-  .get('/times', (req, res) => res.send(showTimes()))
-  .get('/db', async (req, res) => {
-    try {
-      const client = await pool.connect();
-      const result = await client.query('SELECT * FROM test_table');
-      const results = {
-        'results': (result) ? result.rows : null
-      };
-      res.render('db', results);
-      client.release();
-    } catch (err) {
-      console.error(err);
-      res.send("Error " + err);
-    }
-  })
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
-showTimes = () => {
-  let result = '';
-  const times = process.env.TIMES || 5;
-  for (i = 0; i < times; i++) {
-    result += i + ' ';
-  }
-  return result;
-}
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.set('views', path.join(__dirname, 'views'));
+
+app.set('view engine', 'ejs');
+
+app.get('/', (req, res) => res.render('home'));
+
+app.get('/about', (req,res) => res.render('about'));
+
+app.get('/contact', (req,res) => res.render('contact'));
+
+app.get('/cool', (req, res) => res.send(cool()))
+
+app.get('/mathjs', (req,res) => res.render());
+
+app.listen(port, function(){
+    console.log(test);
+    console.log(`Listening on ${ port }`)
+});

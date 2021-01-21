@@ -1,0 +1,48 @@
+html,body,header,main,footer {
+	font-size : 16px;
+	font-family : sans-serif;
+	color : black;
+	background-size : 100%;
+	display : block;
+	box-sizing : border-box;
+	margin : 0 0 0 0;
+	padding : 0 0 0 0;
+}
+
+.inline {
+	display : inline-block;
+}
+
+.faded {
+	opacity : 0 !important;
+}
+
+.fade {
+	opacity : 0;
+}
+
+.hidden {
+	display : none !important;
+}
+
+.hide {
+	display : none;
+}
+
+header[role="header"] {
+	background-color : white;
+}
+
+main[role="main"] {
+	background-color: white;
+}
+
+[aria-pressed]:before {
+	content : '';
+	background-image : url();
+}
+
+[aria-pressed]:after {
+	content : '';
+	background-image : url();
+}
